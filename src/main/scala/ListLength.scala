@@ -2,12 +2,11 @@ import scala.annotation.tailrec
 
 class ListLength{
   @tailrec
-  final def length[T](list: Iterable[T], accumulator: Int = 0) : Int =
-    if(list.isEmpty) accumulator
-    else length(list.tail, accumulator + 1)
+  final def length[T](listInput: Iterable[T], accumulator: Int = 0) : Int =
+    if(listInput.isEmpty) accumulator
+    else length(listInput.tail, accumulator + 1)
 }
 
-// Another way of doing same thing
 //class ListLength2 {
 //  def length[T](listInput: Iterable[T]): Int = {
 //    @tailrec
