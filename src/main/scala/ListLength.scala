@@ -1,11 +1,22 @@
-class ListLength {
-  def length[T](listInput: List[T]): Int = {
-    def lengthCalculator(listInput: List[T], accumulator: Int): Int =
-      listInput match {
-        case Nil => accumulator
-        case listHead :: listTail => lengthCalculator(listTail, accumulator + 1)
-        // For every head of every tail, until tail == Nil => accumulator will get +1
-      }
-    lengthCalculator(listInput, 0)
-  }
+import scala.annotation.tailrec
+
+class ListLength{
+  @tailrec
+  final def length[T](list: Iterable[T], accumulator: Int = 0) : Int =
+    if(list.isEmpty) accumulator
+    else length(list.tail, accumulator + 1)
 }
+
+// Another way of doing same thing
+//class ListLength2 {
+//  def length[T](listInput: Iterable[T]): Int = {
+//    @tailrec
+//    def lengthCalculator(listInput: Iterable[T], accumulator: Int = 0): Int =
+//      if(listInput.isEmpty) accumulator
+//      else listInput match {
+//        case listHead :: listTail => lengthCalculator(listTail, accumulator + 1)
+//        // For every head of every tail, until tail == Nil => accumulator will get +1
+//      }
+//    lengthCalculator(listInput)
+//  }
+//}
